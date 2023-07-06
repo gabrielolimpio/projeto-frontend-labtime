@@ -24,15 +24,39 @@
 
       <form>
 
-          <label>NomeCompleto</label>
-          <input type="text" placeholder="NomeCompleto" v-model="usuario.nomeCompleto">
-          <label>NomeSocial</label>
-          <input type="text" placeholder="NomeSocial" v-model="usuario.nomeSocial">
-          <!-- <input type="text" placeholder="Nome" v-model="usuario.nome">
-          <label>Quantidade</label>
-          <input type="number" placeholder="QTD" v-model="usuario.quantidade">
-          <label>Valor</label>
-          <input type="text" placeholder="Valor" v-model="usuario.valor"> -->
+          <label>Nome completo</label>
+          <input type="text" placeholder="Nome completo" v-model="users.nomeCompleto">
+
+          <label>Nome social</label>
+          <input type="text" placeholder="Nome social" v-model="users.nomeSocial">
+
+          <label>Data de nascimento</label>
+          <input type="date" placeholder="Data" v-model="users.dataDeNascimento">
+
+          <label>Código</label>
+          <input type="number" placeholder="Codigo" v-model="users.codigo">
+
+          <label>Sexo</label>
+          <input type="text" placeholder="Sexo" v-model="users.sexo">
+
+          <label>Email</label>
+          <input type="text" placeholder="Email" v-model="users.email">
+
+          <label>Estado</label>
+          <input type="text" placeholder="Estado" v-model="users.estado">
+
+          <label>Município</label>
+          <input type="text" placeholder="Municipio" v-model="users.municipio">
+
+          <label>Número de acessos ao curso</label>
+          <input type="text" placeholder="Número de acessos ao curso" v-model="users.numeroDeAcessosAoCurso">
+
+          <label>Situação no curso</label>
+          <input type="text" placeholder="Situação no curso" v-model="users.situacaoNoCurso">
+
+          <label>Data de vínculo</label>
+          <input type="date" placeholder="Data de vínculo" v-model="users.dataDeVinculo">
+
 
           <button class="waves-effect waves-light btn-small">Salvar<i class="material-icons left">save</i></button>
 
@@ -45,7 +69,7 @@
           <tr>
             <th>NOME COMPLETO</th>
             <th>NOME SOCIAL</th>
-            <!-- <th>DATA DE NASCIMENTO</th>
+            <th>DATA DE NASCIMENTO</th>
             <th>CODIGO</th>
             <th>SEXO</th>
             <th>EMAIL</th>
@@ -53,26 +77,26 @@
             <th>MUNICIPIO</th>
             <th>NUMERO DE ACESSOS AO CURSO</th>
             <th>SITUACAO NO CURSO</th>
-            <th>DATA DE VINCULO</th> -->
+            <th>DATA DE VINCULO</th>
           </tr>
 
         </thead>
 
         <tbody>
 
-          <tr v-for="usuario of usuarios" :key="usuario.id">
+          <tr v-for="users of userss" :key="users.id">
 
-            <td>{{ usuario.nomeCompleto }}</td>
-            <td>{{ usuario.nomeSocial }}</td>
-            <td>{{ usuario.dataDeNascimento }}</td>
-            <td>{{ usuario.codigo }}</td>
-            <td>{{ usuario.sexo }}</td>
-            <td>{{ usuario.email }}</td>
-            <td>{{ usuario.estado }}</td>
-            <td>{{ usuario.municipio }}</td>
-            <td>{{ usuario.numeroDeAcessosAoCurso }}</td>
-            <td>{{ usuario.situacaoNoCurso }}</td>
-            <td>{{ usuario.dataDeVinculo }}</td>
+            <td>{{ users.nomeCompleto }}</td>
+            <td>{{ users.nomeSocial }}</td>
+            <td>{{ users.dataDeNascimento }}</td>
+            <td>{{ users.codigo }}</td>
+            <td>{{ users.sexo }}</td>
+            <td>{{ users.email }}</td>
+            <td>{{ users.estado }}</td>
+            <td>{{ users.municipio }}</td>
+            <td>{{ users.numeroDeAcessosAoCurso }}</td>
+            <td>{{ users.situacaoNoCurso }}</td>
+            <td>{{ users.dataDeVinculo }}</td>
             <td>
               <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
               <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
@@ -97,15 +121,44 @@ export default {
 
   data() {
     return {
-      usuario: {
+      users: {
         id: '',
         nomeCompleto: '',
-        nomeSocial: ''
+        nomeSocial: '',
+        dataDeNascimento: '',
+        codigo: '',
+        email: '',
+        estado: '',
+        municipio: '',
+        numeroDeAcessosAoCurso: '',
+        situacaoNoCurso: '',
+        dataDeVinculo: ''
       },
-      usuarios: [],
-      errors: []
+      userss: []
+      // errors: []
     }
   },
+
+  // mounted(){
+  //   Usuario.listar().then(resposta => {
+  //     this.resposta = resposta
+  //     console.log(resposta.data)
+  //     this.usuarios = resposta.data
+  //   })
+  // },
+
+  // data() {
+  //   return {
+  //     usuario: {
+  //       id: '',
+  //       nomeCompleto: '',
+  //       nomeSocial: '',
+  //       dataDeNascimento: ''
+  //     },
+  //     usuarios: [],
+  //     errors: []
+  //   }
+  // },
 
   mounted(){
     this.listar()
@@ -115,9 +168,9 @@ export default {
 
     listar(){
       Usuario.listar().then(resposta => {
-        this.usuarios = resposta.data
+        this.userss = resposta.data
       })
-    },
+    }
 
     // salvar() {
 
